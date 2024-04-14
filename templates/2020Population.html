@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>2020 Population Data</title>
+</head>
+<body>
+    <h1>2020 Population Data</h1>
+    <!-- Search Form -->
+    <form action="/2020Population" method="get">
+        <input type="text" name="search" placeholder="Enter city name">
+        <button type="submit">Search</button>
+    </form>
+    
+    <table border="1">
+        <tr>
+            <th>CITY</th>
+            <th>STATE</th>
+            <th>POPULATION</th>
+            <th>LATITUDE</th>
+            <th>LONGITUDE</th>
+        </tr>
+        {% for row in rows %}
+        <tr>
+            <td>{{ row[0] }}</td>
+            <td>{{ row[1] }}</td>
+            <td>{{ row[2] }}</td>
+            <td>{{ row[3] }}</td>
+            <td>{{ row[4] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <div>
+        <a href="{{ url_for('population', page=page-1) }}" {% if page <= 1 %}class="disabled" style="pointer-events: none; color: grey;"{% endif %}>Previous</a>
+        <span>Page {{ page }}</span>
+        <a href="{{ url_for('population', page=page+1) }}">Next</a>
+    </div>
+</body>
+</html>

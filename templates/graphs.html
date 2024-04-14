@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Graphs of Incidents</title>
+</head>
+<body>
+    <h1>Generate Incident Graphs</h1>
+    <form action="{{ url_for('graphs') }}" method="post">
+        <input type="text" name="city_name" placeholder="Enter city name" required>
+        <button type="submit">Generate Graph</button>
+    </form>
+
+    {% if message %}
+        <p>{{ message }}</p>
+    {% elif image_data %}
+        <img src="{{ image_data }}" alt="Generated Graph">
+    {% endif %}
+
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Data Page</title>
+</head>
+
+<a href="/">Home</a>
+<a href="/about">About</a>
+
+<body>
+    <h1>Search Population Data</h1>
+    <form action="/data" method="get">
+        <label for="city_name">City Name:</label>
+        <input type="text" id="city_name" name="city_name">
+        <input type="submit" value="Search">
+    </form>
+    <tr>
+    <table border="1">
+        <th>CITY</th>
+        <th>STATE</th>
+        <th>POPULATION</th>
+        <th>LATITUDE</th>
+        <th>LONGITUDE</th>
+
+        <!-- Add more <th> tags depending on the number of columns in your table -->
+    </tr>
+    {% for row in rows %}
+    <tr>
+        <td>{{ row[0] }}</td>
+        <td>{{ row[1] }}</td>
+        <td>{{ row[2] }}</td>
+        <td>{{ row[3] }}</td>
+        <td>{{ row[4] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="/">Home</a>
+    <a href="/about">About</a>
+</body>
+</html>

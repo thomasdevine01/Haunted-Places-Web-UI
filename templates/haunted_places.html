@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Haunted Places</title>
+</head>
+<body>
+    <h1>Haunted Places Across the Country</h1>
+    
+    <!-- Combined Form with two actions -->
+    <form method="GET" action="/haunted">
+        <input type="text" name="city_name" placeholder="Enter city name">
+        <button type="submit" name="action" value="search_city">Search City</button>
+        <button type="submit" name="action" value="join_population">Join with Population</button>
+    </form>
+    
+    <table border="1">
+        <tr>
+            <th>CITY</th>
+            <th>STATE</th>
+            <th>LOCATION</th>
+            <th>LONGITUDE</th>
+            <th>LATITUDE</th>
+            {% if row|length > 5 %}
+            <th>POPULATION</th> <!-- Only show if needed based on action -->
+            {% endif %}
+        </tr>
+        {% for rowline in rows %}
+        <tr>
+            <td>{{ rowline[0] }}</td>
+            <td>{{ rowline[1] }}</td>
+            <td>{{ rowline[2] }}</td>
+            <td>{{ rowline[3] }}</td>
+            <td>{{ rowline[4] }}</td>
+            {% if row|length > 5 %}
+            <td>{{ rowline[5] }}</td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+    </table>
+
+    <div>
+        <!-- Pagination Links -->
+        <a href="{{ url_for('haunted_places', page=page-1) }}" {% if page <= 1 %}class="disabled"{% endif %}>Previous</a>
+        <span>Page {{ page }}</span>
+        <a href="{{ url_for('haunted_places', page=page+1) }}">Next</a>
+    </div>
+    
+
+    <a href="/">Back to Home</a>
+</body>
+</html>
